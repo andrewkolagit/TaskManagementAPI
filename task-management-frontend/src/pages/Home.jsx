@@ -23,27 +23,22 @@ const Home = () => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Get current user ID from token (simplified - you'd decode JWT in production)
   useEffect(() => {
   fetchCurrentUser();
 }, []);
 
 const fetchCurrentUser = async () => {
-  try {
-    // We'll create this endpoint to get current user from token
-    const response = await api.get('/users/me');
+  try {    const response = await api.get('/users/me');
     setCurrentUser(response.data);
   } catch (error) {
     console.error('Error fetching current user:', error);
   }
 };
 
-  // Fetch all projects on component mount
   useEffect(() => {
     fetchProjects();
   }, []);
 
-  // Fetch tasks when a project is selected
   useEffect(() => {
     if (selectedProject) {
       fetchTasks(selectedProject.id);
@@ -87,7 +82,6 @@ const fetchCurrentUser = async () => {
   try {
     await deleteProject(projectId);
     
-    // If the deleted project was selected, clear selection
     if (selectedProject?.id === projectId) {
       setSelectedProject(null);
       setTasks([]);
@@ -163,7 +157,6 @@ const fetchCurrentUser = async () => {
   }
 };
 
-  // Separate active and completed tasks
   const activeTasks = tasks.filter(task => task.status !== 'Completed');
   const completedTasks = tasks.filter(task => task.status === 'Completed');
 
@@ -172,7 +165,6 @@ const fetchCurrentUser = async () => {
       <Navbar user={currentUser} />
 
       <div className="flex h-[calc(100vh-64px)]">
-        {/* Projects Panel - 30% width */}
         <div className="w-[30%] bg-gray-50 p-4 overflow-y-auto border-r border-gray-200">
           <h2 className="text-xl font-bold text-gray-800 mb-4">PROJECTS</h2>
 
@@ -200,7 +192,6 @@ const fetchCurrentUser = async () => {
           )}
         </div>
 
-        {/* Tasks Panel - 70% width */}
         <div className="w-[70%] bg-white p-4 overflow-y-auto">
           <h2 className="text-xl font-bold text-gray-800 mb-4">TASKS</h2>
 
@@ -231,7 +222,6 @@ const fetchCurrentUser = async () => {
             </p>
           ) : (
             <div>
-              {/* Active Tasks Section */}
               {activeTasks.length > 0 && (
                 <>
                   <div className="border-b-2 border-gray-300 mb-4 pb-2">
@@ -255,7 +245,6 @@ const fetchCurrentUser = async () => {
                 </>
               )}
 
-              {/* Completed Tasks Section */}
               {completedTasks.length > 0 && (
                 <>
                   <div className="border-b-2 border-gray-300 mb-4 pb-2 mt-8">

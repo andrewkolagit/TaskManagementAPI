@@ -61,15 +61,12 @@ public class TaskService {
             throw new ResourceNotFoundException("Task not found with id: " + id);
         }
 
-        // Get current user from security context
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         var currentUser = userService.getUserByUsername(username);
 
-        // Get the task to check authorization
         Task task = getTaskById(id);
 
-        // Check if user is authorized (must be creator OR assigned user)
         Long currentUserId = currentUser.getId();
         Long taskCreatorId = task.getCreatedById();
         Long taskAssignedId = task.getAssignedToId();

@@ -34,7 +34,6 @@ const ProjectCard = ({ project, isSelected, onClick, onDelete }) => {
         </div>
       </div>
       
-      {/* Delete Button */}
       <div className="flex justify-end mt-3">
         <button
           onClick={handleDelete}

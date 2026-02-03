@@ -114,7 +114,6 @@ const CommentsSection = ({ taskId, currentUserId }) => {
         )}
       </div>
 
-      {/* Add Comment Form */}
       <form onSubmit={handleAddComment} className="flex gap-2">
         <input
           type="text"

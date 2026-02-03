@@ -105,7 +105,6 @@ const TaskCard = ({ task, isSelected, onClick, onAssign, onComplete, onDelete, c
         {task.description || 'No description'}
       </p>
 
-      {/* Show assigned user */}
       {assignedUser && (
         <p className="text-xs text-blue-600 mb-2">
           👤 Assigned to: <span className="font-semibold">{assignedUser.firstName} {assignedUser.lastName} ({assignedUser.username})</span>
@@ -140,7 +139,6 @@ const TaskCard = ({ task, isSelected, onClick, onAssign, onComplete, onDelete, c
               </button>
             )}
             
-            {/* Mark as Completed button with authorization */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -158,7 +156,6 @@ const TaskCard = ({ task, isSelected, onClick, onAssign, onComplete, onDelete, c
             </button>
           </div>
 
-          {/* Comments Section */}
           <CommentsSection 
             taskId={task.id} 
             currentUserId={currentUserId}
